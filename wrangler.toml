@@ -1,0 +1,9 @@
+name = "report-problem-parser"
+main = "src/index.ts"
+compatibility_date = "2024-09-05"
+
+[env.production]
+name = "report-problem-parser"
+
+[env.staging]
+name = "report-problem-parser-staging"

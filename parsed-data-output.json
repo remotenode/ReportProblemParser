@@ -1,0 +1,916 @@
+{
+  "metadata": {
+    "country": "United States",
+    "appStoreLink": "https://apps.apple.com/us/app/guardix-ai-virus-protection/id6749379870",
+    "appName": "Unknown",
+    "lastUpdated": "2025-09-05T11:24:53.655Z",
+    "totalReports": 51
+  },
+  "complaints": [
+    {
+      "id": 1,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}",
+        "Write App Store review: {appStoreReview}",
+        "Set App Store rating to {appStoreRating}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "A virus alert or said my device was hacked.",
+        "complaintText": "This app shows that I have virus and forced me to buy subscription. Completely scam app! Return my money!\n",
+        "appStoreReview": "Dangerous scam!!!\nThe app lies about “viruses” and pushes forced payments. Do not trust this! ",
+        "appStoreRating": 1
+      }
+    },
+    {
+      "id": 2,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "A virus alert or said my device was hacked.",
+        "complaintText": "I downloaded app because it said that phone is broken, after it showed me Apple Logo and said that I will be connected to specialist, after that they charged my card! Scammers! Delete it\n",
+        "appStoreReview": "",
+        "appStoreRating": ""
+      }
+    },
+    {
+      "id": 3,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}",
+        "Write App Store review: {appStoreReview}",
+        "Set App Store rating to {appStoreRating}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "A virus alert or said my device was hacked.",
+        "complaintText": "This app stole my money, return it back. It is fraud subscription, and a fraud mechanics.\n",
+        "appStoreReview": "Do not download!!!!!!!\nThis app automatically tries to charge your card and threatens with fake data theft. Scam!  ",
+        "appStoreRating": 1
+      }
+    },
+    {
+      "id": 4,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "A virus alert or said my device was hacked.",
+        "complaintText": "I will go to police, because this application said that they have my personal data and I need to pay money to protect it. It is blackmail!\n",
+        "appStoreReview": "",
+        "appStoreRating": ""
+      }
+    },
+    {
+      "id": 5,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}",
+        "Write App Store review: {appStoreReview}",
+        "Set App Store rating to {appStoreRating}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "A virus alert or said my device was hacked.",
+        "complaintText": "Apple support, can you explain me why this application said that FBI had my data and I need to delete it with this app? What scam is it?\n",
+        "appStoreReview": "All virus alerts are fake. They only want your money. Stay away from this trap. ",
+        "appStoreRating": 1
+      }
+    },
+    {
+      "id": 6,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "A virus alert or said my device was hacked.",
+        "complaintText": "App is scam!!! I want money back! They lied that FBI is looking for me and I need to pay money to cancel the warrant.\n",
+        "appStoreReview": "",
+        "appStoreRating": ""
+      }
+    },
+    {
+      "id": 7,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}",
+        "Write App Store review: {appStoreReview}",
+        "Set App Store rating to {appStoreRating}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "A virus alert or said my device was hacked.",
+        "complaintText": "My phone is damaged, I payed as this developer said, can you tell me,  is my phone and data protected right now?",
+        "appStoreReview": "Scam app, show virus ads and stole my money!",
+        "appStoreRating": 1
+      }
+    },
+    {
+      "id": 8,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "A virus alert or said my device was hacked.",
+        "complaintText": "Developers 100% scammers! They showing that I have a virus and phone will be blocked if I will not pay money. When I opened app second time toake screenshot it showed complete different screens!",
+        "appStoreReview": "",
+        "appStoreRating": ""
+      }
+    },
+    {
+      "id": 9,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}",
+        "Write App Store review: {appStoreReview}",
+        "Set App Store rating to {appStoreRating}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "A virus alert or said my device was hacked.",
+        "complaintText": "That is really fraud app, they want to steal my money! I will call to police!",
+        "appStoreReview": "This app is a SCAM!!!\nThey threaten to steal my data, show fake virus warnings, and try to charge me money automatically without permission. Do NOT download this app, it’s dangerous and fraudulent! ",
+        "appStoreRating": 1
+      }
+    },
+    {
+      "id": 10,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "A virus alert or said my device was hacked.",
+        "complaintText": "Dear Apple, that developer scammed me. I want to go to court and start investigation. They said that I am terrorist and FBI is looking for me. ",
+        "appStoreReview": "",
+        "appStoreRating": ""
+      }
+    },
+    {
+      "id": 11,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}",
+        "Write App Store review: {appStoreReview}",
+        "Set App Store rating to {appStoreRating}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "A virus alert or said my device was hacked.",
+        "complaintText": "That application looks like virus, and keep sending notification that my phone is broken.\n",
+        "appStoreReview": "SCAM APP!!!!\nThis app pretends my phone is infected, threatens to steal my data, and tries to subscribe me without permission. Stay away! ",
+        "appStoreRating": 1
+      }
+    },
+    {
+      "id": 12,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "A virus alert or said my device was hacked.",
+        "complaintText": "Completely scam app, it should not be in App Store.",
+        "appStoreReview": "",
+        "appStoreRating": ""
+      }
+    },
+    {
+      "id": 13,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}",
+        "Write App Store review: {appStoreReview}",
+        "Set App Store rating to {appStoreRating}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "A virus alert or said my device was hacked.",
+        "complaintText": "This application is a nightmare. I am asking you for the information of this developer, because I will go to court and my lawyer need this info.",
+        "appStoreReview": "Fake and fraud!!",
+        "appStoreRating": 1
+      }
+    },
+    {
+      "id": 14,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "A virus alert or said my device was hacked.",
+        "complaintText": "Apple are you working with scammers?!! Why this app saying that my phone full of viruses? What should I do!!",
+        "appStoreReview": "",
+        "appStoreRating": ""
+      }
+    },
+    {
+      "id": 15,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}",
+        "Write App Store review: {appStoreReview}",
+        "Set App Store rating to {appStoreRating}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "A virus alert or said my device was hacked.",
+        "complaintText": "They showed me completely misleading advertising and same shit screen and notification in the application!",
+        "appStoreReview": "All virus alerts are fake. They only want your money. Stay away from this trap. ",
+        "appStoreRating": 1
+      }
+    },
+    {
+      "id": 16,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "A virus alert or said my device was hacked.",
+        "complaintText": "I downloaded this app, and I can say with 100% that this app violates all guidelines. I am also a developer, and say showing POPunder ads, where that re saying that my data, passwords leaked and I have a virus on my phone. After I downloaded this app, they start scanning my phone and start saying that I have 150 viruses, it is not normal! App is saying that I need to pay 9.99$ in week to keep my phone clean out of viruses.\n",
+        "appStoreReview": "",
+        "appStoreRating": ""
+      }
+    },
+    {
+      "id": 17,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}",
+        "Write App Store review: {appStoreReview}",
+        "Set App Store rating to {appStoreRating}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "A virus alert or said my device was hacked.",
+        "complaintText": "Scammers, return my money! Apple I can not understand why your Apple genius specialist, saying that my data have been stolen and my phone has viruses! That is definitely not normal",
+        "appStoreReview": "Scam app, show virus ads and stole my money!",
+        "appStoreRating": 1
+      }
+    },
+    {
+      "id": 18,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "A virus alert or said my device was hacked.",
+        "complaintText": "This app is totally scam! They told me I have virus. Alert was on full screen. Then they charge me for 10$ every week!",
+        "appStoreReview": "",
+        "appStoreRating": ""
+      }
+    },
+    {
+      "id": 19,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}",
+        "Write App Store review: {appStoreReview}",
+        "Set App Store rating to {appStoreRating}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "A virus alert or said my device was hacked.",
+        "complaintText": "Scam and virus… I just spend my time on Facebook and then they told me I have virus. Then I don’t know how they stole my money",
+        "appStoreReview": "I want my money back, do not install this app!!!",
+        "appStoreRating": 1
+      }
+    },
+    {
+      "id": 20,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "A virus alert or said my device was hacked.",
+        "complaintText": "I don’t know how this app come to my phone. I used my phone like always and then in one day virus from this application come there. There was a lot of alerts and then they charge 9.99$ / week",
+        "appStoreReview": "",
+        "appStoreRating": ""
+      }
+    },
+    {
+      "id": 21,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}",
+        "Write App Store review: {appStoreReview}",
+        "Set App Store rating to {appStoreRating}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "A virus alert or said my device was hacked.",
+        "complaintText": "Fraud and scam. They make viruses for iPhones and then they make payments from my card . Scam",
+        "appStoreReview": "Liars!!! I payed money to you because you said that my data leaked, but after this you charging me every week. It is a scam!\n",
+        "appStoreRating": 1
+      }
+    },
+    {
+      "id": 22,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "I was pressure into downloading an app",
+        "complaintText": "Virus on iPhone. Developer is making viruses for IOS. They are scammers and carders",
+        "appStoreReview": "",
+        "appStoreRating": ""
+      }
+    },
+    {
+      "id": 23,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}",
+        "Write App Store review: {appStoreReview}",
+        "Set App Store rating to {appStoreRating}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "I was pressure into downloading an app",
+        "complaintText": "Worst app in appstore. They steal money from my card with virus approach",
+        "appStoreReview": "Is my data now in safe now?! What should I do next? I do not want to have virus on my phone!\n",
+        "appStoreRating": 1
+      }
+    },
+    {
+      "id": 24,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "I was pressure into downloading an app",
+        "complaintText": "They position themselves as a utility to help people, but in reality they are scammers. They hacked my phone and are stealing money",
+        "appStoreReview": "",
+        "appStoreRating": ""
+      }
+    },
+    {
+      "id": 25,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}",
+        "Write App Store review: {appStoreReview}",
+        "Set App Store rating to {appStoreRating}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "I was pressure into downloading an app",
+        "complaintText": "Virus on iPhone. Never seen anything like this. They write that there is a virus on the phone and that it is infected",
+        "appStoreReview": "9.99$ per week for this fraud app?! Are you serious!? So not download this scam ",
+        "appStoreRating": 1
+      }
+    },
+    {
+      "id": 26,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "I was pressure into downloading an app",
+        "complaintText": "you should delete this app. it is created by scammers. they steal my money and say that the iPhone will burn",
+        "appStoreReview": "",
+        "appStoreRating": ""
+      }
+    },
+    {
+      "id": 27,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}",
+        "Write App Store review: {appStoreReview}",
+        "Set App Store rating to {appStoreRating}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "I was pressure into downloading an app",
+        "complaintText": "how do you monitor moderation in your store? it's just awful. this app is a virus. it deceives people",
+        "appStoreReview": "Fake antivirus!!!\nNothing works, only fake virus messages and attempts to steal money",
+        "appStoreRating": 1
+      }
+    },
+    {
+      "id": 28,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "I was pressure into downloading an app",
+        "complaintText": "please tell me, can my phone really burn out if I don't buy a subscription? I just watched funny videos on facebook and then got this virus",
+        "appStoreReview": "",
+        "appStoreRating": ""
+      }
+    },
+    {
+      "id": 29,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}",
+        "Write App Store review: {appStoreReview}",
+        "Set App Store rating to {appStoreRating}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "Misleading claims about app functionality",
+        "complaintText": "please remove this app from appstore. these people steal money of honest citizens under the pretext of virus",
+        "appStoreReview": "Terrible experience!!!!\nDownloaded and instantly got fake virus alerts + payment popups. 100% scam.\n",
+        "appStoreRating": 1
+      }
+    },
+    {
+      "id": 30,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "Misleading claims about app functionality",
+        "complaintText": "I have a terrible experience with this app. I didn't even sign up for a subscription and they are charging me. It keeps saying that I have a virus on my phone. It looks like a scam.",
+        "appStoreReview": "",
+        "appStoreRating": ""
+      }
+    },
+    {
+      "id": 31,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}",
+        "Write App Store review: {appStoreReview}",
+        "Set App Store rating to {appStoreRating}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "Misleading claims about app functionality",
+        "complaintText": "How could this get into the store? How do you moderate apps?! This is a virus right in your store!",
+        "appStoreReview": "Dangerous app!\nThis app is a fraud: fake virus scans, scare tactics, hidden subscriptions. ",
+        "appStoreRating": 1
+      }
+    },
+    {
+      "id": 32,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "Misleading claims about app functionality",
+        "complaintText": "“Warning! Your phone is infected” they told me and after charge me for 100$",
+        "appStoreReview": "",
+        "appStoreRating": ""
+      }
+    },
+    {
+      "id": 33,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}",
+        "Write App Store review: {appStoreReview}",
+        "Set App Store rating to {appStoreRating}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "Misleading claims about app functionality",
+        "complaintText": "This app is a SCAM! It shows fake virus alerts, threatens to steal data, and secretly tries to charge money through hidden subscriptions. The app pretends to be antivirus, but it’s fake and dangerous. All warnings are lies, only made to scare users into paying. This is pure fraud and must be removed from the App Store immediately to protect users from being tricked and losing money.\n ",
+        "appStoreReview": "Fake app\nThis isn’t antivirus or security. It’s a fraud app that wants to steal from",
+        "appStoreRating": 1
+      }
+    },
+    {
+      "id": 34,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "Misleading claims about app functionality",
+        "complaintText": "SCAM app! Fake virus warnings, fake protection, hidden charges. It tricks users with fear tactics and tries to steal money. Apple should ban this fraudulent app to protect users.  \n",
+        "appStoreReview": "",
+        "appStoreRating": ""
+      }
+    },
+    {
+      "id": 35,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "Misleading claims about app functionality",
+        "complaintText": "Dangerous fraud! The app lies about “viruses,” pressures users with fake threats, and auto-charges money. It’s not security – it’s theft. Must be removed now.  \n",
+        "appStoreReview": "",
+        "appStoreRating": ""
+      }
+    },
+    {
+      "id": 36,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}",
+        "Set App Store rating to {appStoreRating}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "Misleading claims about app functionality",
+        "complaintText": "This is not antivirus, it’s a scam. Fake alerts, hidden billing, and threats of data theft. The app misleads and steals from users. Remove this fraud immediately.  ",
+        "appStoreReview": "",
+        "appStoreRating": 1
+      }
+    },
+    {
+      "id": 37,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "Report misleading charges",
+        "complaintText": "Fraud app! Nothing real – only fake scans, popups, and forced payments. It abuses fear to steal money from users. Apple should take it down at once.",
+        "appStoreReview": "",
+        "appStoreRating": ""
+      }
+    },
+    {
+      "id": 38,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}",
+        "Set App Store rating to {appStoreRating}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "Report misleading charges",
+        "complaintText": "This app is a complete SCAM! It shows fake virus alerts, threatens users with false data theft messages, and then forces hidden subscriptions to steal money. The app pretends to be antivirus or security, but in reality it does nothing useful. It is pure fraud, dangerous to users, and should be removed from the App Store immediately.\n",
+        "appStoreReview": "",
+        "appStoreRating": 1
+      }
+    },
+    {
+      "id": 39,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "Report misleading charges",
+        "complaintText": "FRAUD APP! As soon as you open it, it shows fake virus warnings and popups, tries to scare you with lies about data theft, and secretly attempts to charge money. This is not antivirus or protection – it is fraud. Apple should investigate this immediately and remove the app to protect users from losing money.\n",
+        "appStoreReview": "",
+        "appStoreRating": ""
+      }
+    },
+    {
+      "id": 40,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "Report misleading charges",
+        "complaintText": "This application is fraudulent and dangerous. It misleads users with fake scans, fake warnings, and threats about stolen data. Then it pushes hidden subscriptions and tries to take money automatically without permission. This is a pure SCAM and should be banned from the App Store as soon as possible to prevent more victims.\n",
+        "appStoreReview": "",
+        "appStoreRating": ""
+      }
+    },
+    {
+      "id": 41,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}",
+        "Set App Store rating to {appStoreRating}"
+      ],
+      "values": {
+        "level1": "Report a scam or fraud",
+        "level2": "Report an issue with the an app",
+        "level3": "Report misleading charges",
+        "complaintText": "This application engages in deceptive practices by displaying fake virus alerts, threatening data theft, and enrolling users in hidden subscriptions without consent. It misrepresents itself as security software while providing no real protection. This is fraudulent behavior and should be removed from the App Store to protect consumers.\n",
+        "appStoreReview": "",
+        "appStoreRating": 1
+      }
+    },
+    {
+      "id": 42,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}"
+      ],
+      "values": {
+        "level1": "Report offensive, illegal or abusive content",
+        "level2": "Violance or terrorist content",
+        "level3": "Other",
+        "complaintText": "The app is misleading and fraudulent. It presents false security warnings, pressures users with fabricated threats, and initiates unauthorized subscription charges. Such practices violate user trust and consumer rights. Immediate investigation and removal from the App Store are strongly recommended.\n",
+        "appStoreReview": "",
+        "appStoreRating": ""
+      }
+    },
+    {
+      "id": 43,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}",
+        "Set App Store rating to {appStoreRating}"
+      ],
+      "values": {
+        "level1": "Report offensive, illegal or abusive content",
+        "level2": "Violance or terrorist content",
+        "level3": "Other",
+        "complaintText": "This application uses fear tactics and misrepresentation to defraud users. It shows fabricated virus scans, displays false security risks, and attempts unauthorized billing. These actions constitute consumer fraud. I request Apple to investigate and permanently remove this app to prevent further harm to users.\n",
+        "appStoreReview": "",
+        "appStoreRating": 1
+      }
+    },
+    {
+      "id": 44,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}"
+      ],
+      "values": {
+        "level1": "Report offensive, illegal or abusive content",
+        "level2": "Violance or terrorist content",
+        "level3": "Other",
+        "complaintText": "Fraudulent software: the app generates false alerts, threatens users with invented security issues, and manipulates them into hidden subscription charges. It provides no legitimate functionality and exists solely to exploit consumers. Removal from the App Store is necessary to safeguard users.  \n",
+        "appStoreReview": "",
+        "appStoreRating": ""
+      }
+    },
+    {
+      "id": 45,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}"
+      ],
+      "values": {
+        "level1": "Report offensive, illegal or abusive content",
+        "level2": "Violance or terrorist content",
+        "level3": "Other",
+        "complaintText": "This app is a scam. It shows fake virus alerts, threatens data theft, and forces hidden subscriptions. It provides no security, only fraud. Apple should remove it immediately to protect users from unauthorized charges and deceptive practices.  \n",
+        "appStoreReview": "",
+        "appStoreRating": ""
+      }
+    },
+    {
+      "id": 46,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}"
+      ],
+      "values": {
+        "level1": "Report offensive, illegal or abusive content",
+        "level2": "Violance or terrorist content",
+        "level3": "Other",
+        "complaintText": "Dangerous scam! The app shows false warnings, threatens with data theft, and pushes forced payments. It is misleading and unsafe.  \n",
+        "appStoreReview": "",
+        "appStoreRating": ""
+      }
+    },
+    {
+      "id": 47,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}"
+      ],
+      "values": {
+        "level1": "Report offensive, illegal or abusive content",
+        "level2": "Violance or terrorist content",
+        "level3": "Other",
+        "complaintText": "Urgent removal from the App Store is required to protect users. \n",
+        "appStoreReview": "",
+        "appStoreRating": ""
+      }
+    },
+    {
+      "id": 48,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}"
+      ],
+      "values": {
+        "level1": "Report offensive, illegal or abusive content",
+        "level2": "Violance or terrorist content",
+        "level3": "Other",
+        "complaintText": "I want to formally report this app as a SCAM. It engages in fraudulent practices by showing false virus warnings, fake data theft messages, and then forcing hidden subscriptions to steal money. It pretends to be a security or antivirus tool, but delivers no real protection. Instead, it abuses fear and deception to mislead users and generate unauthorized charges. Many reviews confirm the same experience: fake scans, popups, and billing attempts. This is not only misleading but dangerous, as it exploits vulnerable users who believe their device is compromised. Such conduct should not be tolerated on the App Store. Apple must take immediate action to investigate, suspend, and permanently remove this app to protect customers and maintain trust in the marketplace. ",
+        "appStoreReview": "",
+        "appStoreRating": ""
+      }
+    },
+    {
+      "id": 49,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}"
+      ],
+      "values": {
+        "level1": "Report offensive, illegal or abusive content",
+        "level2": "Violance or terrorist content",
+        "level3": "Other",
+        "complaintText": "This application is fraudulent, misleading, and unsafe. As soon as it is opened, it shows fake virus scans and fabricated warnings about data theft, all designed to pressure users into paying. It then attempts to charge money automatically through hidden subscriptions without proper consent. The app falsely presents itself as antivirus or protection software, but offers no real security features. Its only function is to exploit fear and steal money. Users are manipulated with popups, false alerts, and scare tactics, leaving them vulnerable to unauthorized charges. This is a serious consumer fraud issue and a violation of trust. Apple should urgently investigate this app, stop these deceptive practices, and remove it from the App Store to ensure user safety and protect people from financial loss.  ",
+        "appStoreReview": "",
+        "appStoreRating": ""
+      }
+    },
+    {
+      "id": 50,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}"
+      ],
+      "values": {
+        "level1": "Report offensive, illegal or abusive content",
+        "level2": "Violance or terrorist content",
+        "level3": "Other",
+        "complaintText": "Alarm. They are bad guys with virus \n",
+        "appStoreReview": "",
+        "appStoreRating": ""
+      }
+    },
+    {
+      "id": 51,
+      "instructions": [
+        "Select {level1} from dropdown and click Continue",
+        "Select {level2} from dropdown",
+        "Select {level3} from dropdown",
+        "Write your complaint text: {complaintText}"
+      ],
+      "values": {
+        "level1": "Report offensive, illegal or abusive content",
+        "level2": "Violance or terrorist content",
+        "level3": "Other",
+        "complaintText": "  Please ban bad boys. Shit application",
+        "appStoreReview": "",
+        "appStoreRating": ""
+      }
+    }
+  ]
+}
