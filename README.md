@@ -94,13 +94,25 @@ npm run deploy:production
 
 ### GET Request
 
+#### With Custom Google Sheet URL:
+```bash
+curl "https://your-worker.your-subdomain.workers.dev/?url=https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/pub?output=xlsx"
+```
+
+#### With Default Sheet (no URL parameter):
 ```bash
 curl https://your-worker.your-subdomain.workers.dev/
 ```
 
+### Parameters
+
+- **url** (optional): Google Sheets published URL in Excel format (`/pub?output=xlsx`)
+  - If not provided, uses the default sheet
+  - Must be a valid Google Sheets URL from `docs.google.com/spreadsheets`
+
 ### Response
 
-Returns the parsed Google Sheets data with all 51 complaints and their instructions.
+Returns the parsed Google Sheets data with all complaints and their instructions.
 
 ## Instructions Format
 

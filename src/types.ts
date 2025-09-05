@@ -4,6 +4,8 @@ export interface Metadata {
   country: string;
   appStoreLink: string;
   appName: string;
+  appId: string;
+  storeRegion: string;
   lastUpdated: string;
   totalReports: number;
 }
@@ -13,8 +15,8 @@ export interface ComplaintValues {
   level2: string;
   level3: string;
   complaintText: string;
-  appStoreReview: string;
-  appStoreRating: string | number;
+  appStoreReview: string | null;
+  appStoreRating: string | number | null;
 }
 
 export interface Complaint {

@@ -56,8 +56,14 @@ export default {
 
       console.log('🔍 Processing request to parse Google Sheets data...');
       
+      // Extract URL from query parameters
+      const url = new URL(request.url);
+      const sheetUrl = url.searchParams.get('url');
+      
+      console.log('📡 Sheet URL:', sheetUrl || 'Using default URL');
+      
       // Parse the Google Sheets data
-      const result = await parseGoogleSheetsData();
+      const result = await parseGoogleSheetsData(sheetUrl || undefined);
       
       console.log('✅ Successfully parsed data, returning response');
       
@@ -77,6 +83,10 @@ export default {
             status = 422; // Unprocessable Entity
             break;
           case 'PARSE_FAILED':
+            status = 400; // Bad Request
+            break;
+          case 'INVALID_URL':
+          case 'INVALID_GOOGLE_SHEETS_URL':
             status = 400; // Bad Request
             break;
           case 'METHOD_NOT_ALLOWED':

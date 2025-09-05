@@ -1,193 +1,56 @@
 import * as XLSX from 'xlsx';
 import { ParsedData, Complaint, ComplaintValues, Metadata, ValidationError, StructuredError } from './types';
+import { extractAppInfo } from './utils/app-info';
+import { validateUrl } from './utils/url-utils';
+import { validateComplaintValues } from './validation/complaint-validator';
+import { validateMetadata } from './validation/metadata-validator';
+import { buildInstructions } from './utils/instruction-builder';
 
-// Google Sheets Excel URL
-const XLSX_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT3cbMFli_QctPsAmtorrUvpyF5Ff900cDiEjIETFnojL7hmhFjHwgunfWjmzynZAbBNNT-ZJZn-jYr/pub?output=xlsx';
+// Default Google Sheets Excel URL (fallback)
+const DEFAULT_XLSX_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT3cbMFli_QctPsAmtorrUvpyF5Ff900cDiEjIETFnojL7hmhFjHwgunfWjmzynZAbBNNT-ZJZn-jYr/pub?output=xlsx';
 
-// Validation functions
-function validateUrl(url: string): boolean {
+export async function parseGoogleSheetsData(sheetUrl?: string): Promise<ParsedData> {
   try {
-    new URL(url);
-    return true;
-  } catch {
-    return false;
-  }
-}
-
-function validateEmail(email: string): boolean {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-}
-
-function validateRequired(value: any, fieldName: string): ValidationError | null {
-  if (!value || (typeof value === 'string' && value.trim() === '')) {
-    return {
-      field: fieldName,
-      message: `${fieldName} is required and cannot be empty`,
-      value: value
-    };
-  }
-  return null;
-}
-
-function validateStringLength(value: string, fieldName: string, minLength: number = 1, maxLength: number = 1000): ValidationError | null {
-  if (typeof value !== 'string') {
-    return {
-      field: fieldName,
-      message: `${fieldName} must be a string`,
-      value: value
-    };
-  }
-  
-  if (value.length < minLength) {
-    return {
-      field: fieldName,
-      message: `${fieldName} must be at least ${minLength} characters long`,
-      value: value
-    };
-  }
-  
-  if (value.length > maxLength) {
-    return {
-      field: fieldName,
-      message: `${fieldName} must be no more than ${maxLength} characters long`,
-      value: value
-    };
-  }
-  
-  return null;
-}
-
-function validateRating(rating: any): ValidationError | null {
-  if (rating === '' || rating === null || rating === undefined) {
-    return null; // Rating is optional
-  }
-  
-  const numRating = Number(rating);
-  if (isNaN(numRating)) {
-    return {
-      field: 'appStoreRating',
-      message: 'App Store rating must be a valid number',
-      value: rating
-    };
-  }
-  
-  if (numRating < 1 || numRating > 5) {
-    return {
-      field: 'appStoreRating',
-      message: 'App Store rating must be between 1 and 5',
-      value: rating
-    };
-  }
-  
-  return null;
-}
-
-function validateComplaintValues(values: any, complaintId: number): ValidationError[] {
-  const errors: ValidationError[] = [];
-  
-  // Validate required fields
-  const requiredFields = ['level1', 'level2', 'level3', 'complaintText'];
-  for (const field of requiredFields) {
-    const error = validateRequired(values[field], field);
-    if (error) {
-      error.field = `complaint_${complaintId}.${field}`;
-      errors.push(error);
+    // Use provided URL or fallback to default
+    const urlToUse = sheetUrl || DEFAULT_XLSX_URL;
+    
+    // Validate the URL
+    if (!validateUrl(urlToUse)) {
+      const structuredError: StructuredError = {
+        error: 'InvalidUrl',
+        message: 'Invalid Google Sheets URL provided',
+        code: 'INVALID_URL',
+        details: [{
+          field: 'url',
+          message: 'URL must be a valid Google Sheets published URL',
+          value: urlToUse
+        }],
+        timestamp: new Date().toISOString()
+      };
+      throw structuredError;
     }
-  }
-  
-  // Validate string lengths
-  if (values.level1) {
-    const error = validateStringLength(values.level1, 'level1', 1, 200);
-    if (error) {
-      error.field = `complaint_${complaintId}.level1`;
-      errors.push(error);
+    
+    // Ensure it's a Google Sheets URL
+    if (!urlToUse.includes('docs.google.com/spreadsheets')) {
+      const structuredError: StructuredError = {
+        error: 'InvalidUrl',
+        message: 'URL must be a Google Sheets URL',
+        code: 'INVALID_GOOGLE_SHEETS_URL',
+        details: [{
+          field: 'url',
+          message: 'URL must be from docs.google.com/spreadsheets',
+          value: urlToUse
+        }],
+        timestamp: new Date().toISOString()
+      };
+      throw structuredError;
     }
-  }
-  
-  if (values.level2) {
-    const error = validateStringLength(values.level2, 'level2', 1, 200);
-    if (error) {
-      error.field = `complaint_${complaintId}.level2`;
-      errors.push(error);
-    }
-  }
-  
-  if (values.level3) {
-    const error = validateStringLength(values.level3, 'level3', 1, 200);
-    if (error) {
-      error.field = `complaint_${complaintId}.level3`;
-      errors.push(error);
-    }
-  }
-  
-  if (values.complaintText) {
-    const error = validateStringLength(values.complaintText, 'complaintText', 10, 2000);
-    if (error) {
-      error.field = `complaint_${complaintId}.complaintText`;
-      errors.push(error);
-    }
-  }
-  
-  if (values.appStoreReview && values.appStoreReview.trim() !== '') {
-    const error = validateStringLength(values.appStoreReview, 'appStoreReview', 10, 1000);
-    if (error) {
-      error.field = `complaint_${complaintId}.appStoreReview`;
-      errors.push(error);
-    }
-  }
-  
-  // Validate rating
-  const ratingError = validateRating(values.appStoreRating);
-  if (ratingError) {
-    ratingError.field = `complaint_${complaintId}.appStoreRating`;
-    errors.push(ratingError);
-  }
-  
-  return errors;
-}
-
-function validateMetadata(metadata: any): ValidationError[] {
-  const errors: ValidationError[] = [];
-  
-  // Validate country
-  const countryError = validateRequired(metadata.country, 'country');
-  if (countryError) errors.push(countryError);
-  
-  if (metadata.country && metadata.country !== 'Unknown') {
-    const countryLengthError = validateStringLength(metadata.country, 'country', 2, 100);
-    if (countryLengthError) errors.push(countryLengthError);
-  }
-  
-  // Validate app store link
-  if (metadata.appStoreLink && metadata.appStoreLink !== 'Unknown') {
-    if (!validateUrl(metadata.appStoreLink)) {
-      errors.push({
-        field: 'appStoreLink',
-        message: 'App Store link must be a valid URL',
-        value: metadata.appStoreLink
-      });
-    }
-  }
-  
-  // Validate total reports
-  if (typeof metadata.totalReports !== 'number' || metadata.totalReports < 0) {
-    errors.push({
-      field: 'totalReports',
-      message: 'Total reports must be a non-negative number',
-      value: metadata.totalReports
-    });
-  }
-  
-  return errors;
-}
-
-export async function parseGoogleSheetsData(): Promise<ParsedData> {
-  try {
+    
     console.log('🔍 Fetching Google Sheets Excel data...');
+    console.log('📡 URL:', urlToUse);
     
     // Fetch the Excel file
-    const response = await fetch(XLSX_URL);
+    const response = await fetch(urlToUse);
     
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}: ${response.statusText}`);
@@ -233,6 +96,10 @@ export async function parseGoogleSheetsData(): Promise<ParsedData> {
       }
     }
     
+    // Extract app information from App Store URL
+    const appInfo = extractAppInfo(appStoreLink);
+    const finalAppName = appName !== 'Unknown' ? appName : appInfo.appName;
+    
     // Find the data header row
     let dataStartRow = -1;
     for (let i = 0; i < jsonData.length; i++) {
@@ -256,13 +123,14 @@ export async function parseGoogleSheetsData(): Promise<ParsedData> {
     
     for (let i = dataStartRow; i < jsonData.length; i++) {
       const row = jsonData[i];
+      const sheetRowNumber = i + 1; // Google Sheets row numbers start from 1
       
       if (row && row.length > 0 && row[0] && row[0].toString().trim() !== '') {
         // Validate row has minimum required columns
         if (row.length < 4) {
           allValidationErrors.push({
-            field: `row_${i + 1}`,
-            message: `Row ${i + 1} is missing required columns (need at least 4 columns)`,
+            field: `row_${sheetRowNumber}`,
+            message: `Row ${sheetRowNumber} is missing required columns (need at least 4 columns) (Google Sheet Row ${sheetRowNumber})`,
             value: row
           });
           continue;
@@ -274,33 +142,18 @@ export async function parseGoogleSheetsData(): Promise<ParsedData> {
           level2: row[1] || '',
           level3: row[2] || '',
           complaintText: row[3] || '',
-          appStoreReview: row[4] || '',
-          appStoreRating: row[5] || ''
+          appStoreReview: (row[4] && row[4].toString().trim() !== '') ? row[4] : null,
+          appStoreRating: (row[5] && row[5].toString().trim() !== '') ? row[5] : null
         };
         
-        // Validate complaint values
-        const validationErrors = validateComplaintValues(values, complaintId);
+        // Validate complaint values with row number
+        const validationErrors = validateComplaintValues(values, complaintId, sheetRowNumber);
         allValidationErrors.push(...validationErrors);
         
         // Only add complaint if validation passes
         if (validationErrors.length === 0) {
-          // Build instructions array with placeholder variables
-          const instructions = [
-            `Select {level1} from dropdown and click Continue`,
-            `Select {level2} from dropdown`,
-            `Select {level3} from dropdown`,
-            `Write your complaint text: {complaintText}`
-          ];
-          
-          // Add App Store Review instruction if present
-          if (row[4] && row[4].toString().trim() !== '') {
-            instructions.push(`Write App Store review: {appStoreReview}`);
-          }
-          
-          // Add App Store Rating instruction if present
-          if (row[5] && row[5].toString().trim() !== '') {
-            instructions.push(`Set App Store rating to {appStoreRating}`);
-          }
+          // Build enhanced instructions using the modular function
+          const instructions = buildInstructions(values, finalAppName);
           
           const complaint: Complaint = {
             id: complaintId++,
@@ -317,7 +170,9 @@ export async function parseGoogleSheetsData(): Promise<ParsedData> {
     const metadata: Metadata = {
       country: country,
       appStoreLink: appStoreLink,
-      appName: appName,
+      appName: finalAppName,
+      appId: appInfo.appId,
+      storeRegion: appInfo.storeRegion,
       lastUpdated: new Date().toISOString(),
       totalReports: complaints.length
     };
