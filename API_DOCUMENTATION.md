@@ -96,6 +96,9 @@ curl https://report-problem-parser.artsyom-avanesov.workers.dev/
 | `storeRegion` | string | App Store region (us, uk, etc.) |
 | `lastUpdated` | string | ISO timestamp of when data was parsed |
 | `totalReports` | number | Total number of valid complaints found |
+| `maxComplaintsPerDay` | number | Maximum complaints allowed per day (5-50) |
+| `dailyLimitValid` | boolean | Whether the complaint count is within daily limits |
+| `dailyLimitMessage` | string | Human-readable message about daily limit validation |
 
 ##### Complaint Object
 
@@ -173,9 +176,9 @@ Returned for data validation errors.
       "value": "Short"
     },
     {
-      "field": "complaint_3.appStoreRating",
-      "message": "App Store rating must be between 1 and 5 (Google Sheet Row 31)",
-      "value": 6
+      "field": "totalReports",
+      "message": "Sheet contains 51 complaints, but maximum 50 complaints per day are allowed",
+      "value": 51
     }
   ],
   "timestamp": "2025-09-05T12:59:13.486Z"
@@ -341,6 +344,35 @@ No rate limits are currently enforced, but please use responsibly.
 
 The API supports CORS and can be called from web browsers.
 
+## Daily Limits
+
+The API enforces daily complaint limits to ensure responsible usage:
+
+- **Minimum**: 5 complaints per day
+- **Maximum**: 50 complaints per day
+- **Validation**: Applied to total number of valid complaints in the sheet
+- **Error**: Returns 422 status with detailed validation message if limits are exceeded
+
+### Daily Limit Validation
+
+The API will reject sheets that don't meet the daily limits:
+
+```json
+{
+  "error": "ValidationError",
+  "message": "Data validation failed with 1 errors",
+  "code": "VALIDATION_FAILED",
+  "details": [
+    {
+      "field": "totalReports",
+      "message": "Sheet contains 51 complaints, but maximum 50 complaints per day are allowed",
+      "value": 51
+    }
+  ],
+  "timestamp": "2025-09-05T13:38:29.200Z"
+}
+```
+
 ## Google Sheets Requirements
 
 ### Required Format
@@ -349,7 +381,7 @@ Your Google Sheet must have the following structure:
 
 1. **Metadata rows** (rows 1-10): Country, App Store Link, App Name
 2. **Header row**: "Level 1", "Level 2", "Level 3", "Text for Claim", "App Store Review", "App Store Rating"
-3. **Data rows**: Actual complaint data
+3. **Data rows**: Actual complaint data (5-50 complaints total)
 
 ### Required Columns
 

@@ -4,6 +4,7 @@ import { extractAppInfo } from './utils/app-info';
 import { validateUrl } from './utils/url-utils';
 import { validateComplaintValues } from './validation/complaint-validator';
 import { validateMetadata } from './validation/metadata-validator';
+import { validateDailyLimits } from './validation/daily-limit-validator';
 import { buildInstructions } from './utils/instruction-builder';
 
 // Default Google Sheets Excel URL (fallback)
@@ -143,7 +144,8 @@ export async function parseGoogleSheetsData(sheetUrl?: string): Promise<ParsedDa
           level3: row[2] || '',
           complaintText: row[3] || '',
           appStoreReview: (row[4] && row[4].toString().trim() !== '') ? row[4] : null,
-          appStoreRating: (row[5] && row[5].toString().trim() !== '') ? row[5] : null
+          appStoreRating: (row[5] && row[5].toString().trim() !== '') ? row[5] : null,
+          appName: finalAppName
         };
         
         // Validate complaint values with row number
@@ -153,7 +155,7 @@ export async function parseGoogleSheetsData(sheetUrl?: string): Promise<ParsedDa
         // Only add complaint if validation passes
         if (validationErrors.length === 0) {
           // Build enhanced instructions using the modular function
-          const instructions = buildInstructions(values, finalAppName);
+          const instructions = buildInstructions(values);
           
           const complaint: Complaint = {
             id: complaintId++,
@@ -166,6 +168,10 @@ export async function parseGoogleSheetsData(sheetUrl?: string): Promise<ParsedDa
       }
     }
     
+    // Validate daily limits
+    const dailyLimitValidation = validateDailyLimits(complaints.length);
+    allValidationErrors.push(...dailyLimitValidation.validationErrors);
+    
     // Validate metadata
     const metadata: Metadata = {
       country: country,
@@ -174,7 +180,10 @@ export async function parseGoogleSheetsData(sheetUrl?: string): Promise<ParsedDa
       appId: appInfo.appId,
       storeRegion: appInfo.storeRegion,
       lastUpdated: new Date().toISOString(),
-      totalReports: complaints.length
+      totalReports: complaints.length,
+      maxComplaintsPerDay: dailyLimitValidation.maxComplaintsPerDay,
+      dailyLimitValid: dailyLimitValidation.dailyLimitValid,
+      dailyLimitMessage: dailyLimitValidation.dailyLimitMessage
     };
     
     const metadataErrors = validateMetadata(metadata);

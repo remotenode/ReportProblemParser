@@ -8,6 +8,9 @@ export interface Metadata {
   storeRegion: string;
   lastUpdated: string;
   totalReports: number;
+  maxComplaintsPerDay: number;
+  dailyLimitValid: boolean;
+  dailyLimitMessage: string;
 }
 
 export interface ComplaintValues {
@@ -17,6 +20,7 @@ export interface ComplaintValues {
   complaintText: string;
   appStoreReview: string | null;
   appStoreRating: string | number | null;
+  appName: string;
 }
 
 export interface Complaint {
