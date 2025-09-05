@@ -1,4 +1,4 @@
-import { Env } from './types';
+import { Env, StructuredError } from './types';
 import { parseGoogleSheetsData } from './parser';
 
 // CORS headers
@@ -8,6 +8,28 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'Content-Type',
   'Content-Type': 'application/json'
 };
+
+function createErrorResponse(error: any, status: number = 500): Response {
+  let errorResponse: StructuredError;
+  
+  if (error && typeof error === 'object' && 'error' in error) {
+    // It's already a structured error
+    errorResponse = error as StructuredError;
+  } else {
+    // Create a structured error from a generic error
+    errorResponse = {
+      error: 'InternalServerError',
+      message: error instanceof Error ? error.message : 'Unknown error occurred',
+      code: 'INTERNAL_ERROR',
+      timestamp: new Date().toISOString()
+    };
+  }
+  
+  return new Response(JSON.stringify(errorResponse), {
+    status: status,
+    headers: corsHeaders
+  });
+}
 
 export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
@@ -19,7 +41,14 @@ export default {
 
       // Only allow GET requests
       if (request.method !== 'GET') {
-        return new Response(JSON.stringify({ error: 'Method not allowed' }), {
+        const errorResponse: StructuredError = {
+          error: 'MethodNotAllowed',
+          message: 'Only GET requests are allowed',
+          code: 'METHOD_NOT_ALLOWED',
+          timestamp: new Date().toISOString()
+        };
+        
+        return new Response(JSON.stringify(errorResponse), {
           status: 405,
           headers: corsHeaders
         });
@@ -39,13 +68,26 @@ export default {
     } catch (error) {
       console.error('❌ Error processing request:', error);
       
-      return new Response(JSON.stringify({ 
-        error: 'Failed to parse Google Sheets data',
-        message: error instanceof Error ? error.message : 'Unknown error'
-      }), {
-        status: 500,
-        headers: corsHeaders
-      });
+      // Determine appropriate status code based on error type
+      let status = 500;
+      if (error && typeof error === 'object' && 'code' in error) {
+        const structuredError = error as StructuredError;
+        switch (structuredError.code) {
+          case 'VALIDATION_FAILED':
+            status = 422; // Unprocessable Entity
+            break;
+          case 'PARSE_FAILED':
+            status = 400; // Bad Request
+            break;
+          case 'METHOD_NOT_ALLOWED':
+            status = 405;
+            break;
+          default:
+            status = 500;
+        }
+      }
+      
+      return createErrorResponse(error, status);
     }
   }
 };

@@ -28,6 +28,20 @@ export interface ParsedData {
   complaints: Complaint[];
 }
 
+export interface ValidationError {
+  field: string;
+  message: string;
+  value?: any;
+}
+
+export interface StructuredError {
+  error: string;
+  message: string;
+  code: string;
+  details?: ValidationError[];
+  timestamp: string;
+}
+
 export interface Env {
   // Add any environment variables here if needed
 }
