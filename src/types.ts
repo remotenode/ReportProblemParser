@@ -1,13 +1,9 @@
 // Type definitions for the Google Sheets parser
 
 export interface Metadata {
-  country: string;
+  countryCode: string;
+  maxComplaintsPerDay: number;
   appStoreLink: string;
-  appName: string;
-  appId: string;
-  storeRegion: string;
-  lastUpdated: string;
-  totalReports: number;
 }
 
 export interface ValueItem {

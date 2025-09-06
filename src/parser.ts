@@ -1,6 +1,5 @@
 import * as XLSX from 'xlsx';
 import { ParsedData, Complaint, ComplaintValues, Metadata, ValidationError, StructuredError } from './types';
-import { extractAppInfo } from './utils/app-info';
 import { validateUrl } from './utils/url-utils';
 import { validateComplaintValues } from './validation/complaint-validator';
 import { validateMetadata } from './validation/metadata-validator';
@@ -82,7 +81,7 @@ export async function parseGoogleSheetsData(sheetUrl?: string): Promise<ParsedDa
     // Extract metadata
     let countryCode = 'US'; // Default to US
     let appStoreLink = '';
-    let appName = 'Unknown';
+    let maxComplaintsPerDay = 10; // Default value
     
     for (let i = 0; i < Math.min(10, jsonData.length); i++) {
       const row = jsonData[i];
@@ -91,18 +90,17 @@ export async function parseGoogleSheetsData(sheetUrl?: string): Promise<ParsedDa
           countryCode = row[1].toString().trim().toUpperCase();
         } else if (row[0] === 'App Store Link' && row[1]) {
           appStoreLink = row[1];
-        } else if (row[0] === 'App Name' && row[1]) {
-          appName = row[1];
+        } else if (row[0] === 'Max Complaints Per Day' && row[1]) {
+          const value = Number(row[1]);
+          if (!isNaN(value) && Number.isInteger(value) && value >= 1 && value <= 50) {
+            maxComplaintsPerDay = value;
+          }
         }
       }
     }
     
-    // Convert country code to country name
+    // Convert country code to country name for internal use
     const countryName = getCountryName(countryCode);
-    
-    // Extract app information from App Store URL
-    const appInfo = extractAppInfo(appStoreLink);
-    const finalAppName = appName !== 'Unknown' ? appName : appInfo.appName;
     
     // Find the data header row
     let dataStartRow = -1;
@@ -148,7 +146,7 @@ export async function parseGoogleSheetsData(sheetUrl?: string): Promise<ParsedDa
           complaintText: row[3] || '',
           appStoreReview: (row[4] && row[4].toString().trim() !== '') ? row[4] : null,
           appStoreRating: (row[5] && row[5].toString().trim() !== '') ? row[5] : null,
-          appName: finalAppName
+          appName: 'Unknown' // Default value since we're not extracting app info
         };
         
         // Validate complaint values with row number
@@ -173,13 +171,9 @@ export async function parseGoogleSheetsData(sheetUrl?: string): Promise<ParsedDa
     
     // Validate metadata
     const metadata: Metadata = {
-      country: countryCode,
-      appStoreLink: appStoreLink,
-      appName: finalAppName,
-      appId: appInfo.appId,
-      storeRegion: appInfo.storeRegion,
-      lastUpdated: new Date().toISOString(),
-      totalReports: complaints.length
+      countryCode: countryCode,
+      maxComplaintsPerDay: maxComplaintsPerDay,
+      appStoreLink: appStoreLink
     };
     
     const metadataErrors = validateMetadata(metadata);
