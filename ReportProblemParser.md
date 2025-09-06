@@ -24,16 +24,13 @@ Parses a Google Sheet and returns structured complaint data with instructions.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `url` | string | No | Google Sheets published URL in Excel format (`/pub?output=xlsx`). If not provided, uses the default sheet. |
+| `url` | string | **Yes** | Google Sheets published URL in Excel format (`/pub?output=xlsx`). Required parameter. |
 
 #### Example Requests
 
 ```bash
-# With custom Google Sheet URL
+# With Google Sheet URL (required)
 curl "https://report-problem-parser.artsyom-avanesov.workers.dev/?url=https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/pub?output=xlsx"
-
-# With default sheet (no URL parameter)
-curl https://report-problem-parser.artsyom-avanesov.workers.dev/
 ```
 
 #### Success Response (200 OK)
@@ -43,9 +40,7 @@ curl https://report-problem-parser.artsyom-avanesov.workers.dev/
   "metadata": {
     "countryCode": "US",
     "maxComplaintsPerDay": 5,
-    "appStoreLink": "https://apps.apple.com/us/app/guardix-ai-virus-protection/id6749379870",
-    "lastUpdated": "2025-09-05T12:59:13.486Z",
-    "totalReports": 51
+    "appStoreLink": "https://apps.apple.com/us/app/guardix-ai-virus-protection/id6749379870"
   },
   "complaints": [
     {
@@ -57,7 +52,6 @@ curl https://report-problem-parser.artsyom-avanesov.workers.dev/
         { "name": "complaintText", "value": "This app shows that I have virus and forced me to buy subscription. Completely scam app! Return my money!" },
         { "name": "appStoreReview", "value": "Dangerous scam!!! The app lies about \"viruses\" and pushes forced payments. Do not trust this!" },
         { "name": "appStoreRating", "value": 1 },
-        { "name": "appName", "value": "Guardix AI Virus Protection" }
       ]
     }
   ]
@@ -70,13 +64,9 @@ curl https://report-problem-parser.artsyom-avanesov.workers.dev/
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `country` | string | Country where the app is available |
+| `countryCode` | string | Country code (must be "US") |
+| `maxComplaintsPerDay` | number | Maximum complaints allowed per day (1-50) |
 | `appStoreLink` | string | Full App Store URL |
-| `appName` | string | Extracted app name from URL |
-| `appId` | string | App Store ID extracted from URL |
-| `storeRegion` | string | App Store region (us, uk, etc.) |
-| `lastUpdated` | string | ISO timestamp of when data was parsed |
-| `totalReports` | number | Total number of valid complaints found |
 
 ##### Complaint Object
 
@@ -342,9 +332,12 @@ The API supports CORS and can be called from web browsers.
 
 Your Google Sheet must have the following structure:
 
-1. **Metadata rows** (rows 1-10): Country, App Store Link, App Name
-2. **Header row**: "Level 1", "Level 2", "Level 3", "Text for Claim", "App Store Review", "App Store Rating"
-3. **Data rows**: Actual complaint data (5-50 complaints total)
+1. **Metadata cells**:
+   - **B1**: Country code (must be "US")
+   - **B2**: App Store Link
+   - **B3**: Max Complaints Per Day (1-50)
+2. **Header row** (row 8): "Report a scam or fraud" (first complaint data)
+3. **Data rows** (row 9+): Actual complaint data with columns: Level 1, Level 2, Level 3, Text for Claim, App Store Review, App Store Rating
 
 ### Required Columns
 
@@ -355,7 +348,13 @@ Your Google Sheet must have the following structure:
 | Level 3 | Yes | Third dropdown selection |
 | Text for Claim | Yes | Main complaint text (min 10 chars) |
 | App Store Review | No | Review text (min 10 chars if present) |
-| App Store Rating | No | Rating 1-5 (if present) |
+| App Store Rating | No | Rating 1-3 (if present) |
+
+### Country Support
+
+- **Only US country code is supported**
+- Country code in B1 must be exactly "US"
+- Any other country code will result in validation error
 
 ### Publishing Requirements
 
