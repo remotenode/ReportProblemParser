@@ -6,16 +6,10 @@ import { validateMetadata } from './validation/metadata-validator';
 import { getCountryName } from './validation/country-validator';
 import { convertValuesToArray } from './utils/values-converter';
 
-// Default Google Sheets Excel URL (fallback)
-const DEFAULT_XLSX_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT3cbMFli_QctPsAmtorrUvpyF5Ff900cDiEjIETFnojL7hmhFjHwgunfWjmzynZAbBNNT-ZJZn-jYr/pub?output=xlsx';
-
-export async function parseGoogleSheetsData(sheetUrl?: string): Promise<ParsedData> {
+export async function parseGoogleSheetsData(sheetUrl: string): Promise<ParsedData> {
   try {
-    // Use provided URL or fallback to default
-    const urlToUse = sheetUrl || DEFAULT_XLSX_URL;
-    
     // Validate the URL
-    if (!validateUrl(urlToUse)) {
+    if (!validateUrl(sheetUrl)) {
       const structuredError: StructuredError = {
         error: 'InvalidUrl',
         message: 'Invalid Google Sheets URL provided',
@@ -23,7 +17,7 @@ export async function parseGoogleSheetsData(sheetUrl?: string): Promise<ParsedDa
         details: [{
           field: 'url',
           message: 'URL must be a valid Google Sheets published URL',
-          value: urlToUse
+          value: sheetUrl
         }],
         timestamp: new Date().toISOString()
       };
@@ -31,7 +25,7 @@ export async function parseGoogleSheetsData(sheetUrl?: string): Promise<ParsedDa
     }
     
     // Ensure it's a Google Sheets URL
-    if (!urlToUse.includes('docs.google.com/spreadsheets')) {
+    if (!sheetUrl.includes('docs.google.com/spreadsheets')) {
       const structuredError: StructuredError = {
         error: 'InvalidUrl',
         message: 'URL must be a Google Sheets URL',
@@ -39,7 +33,7 @@ export async function parseGoogleSheetsData(sheetUrl?: string): Promise<ParsedDa
         details: [{
           field: 'url',
           message: 'URL must be from docs.google.com/spreadsheets',
-          value: urlToUse
+          value: sheetUrl
         }],
         timestamp: new Date().toISOString()
       };
@@ -47,10 +41,10 @@ export async function parseGoogleSheetsData(sheetUrl?: string): Promise<ParsedDa
     }
     
     console.log('🔍 Fetching Google Sheets Excel data...');
-    console.log('📡 URL:', urlToUse);
+    console.log('📡 URL:', sheetUrl);
     
     // Fetch the Excel file
-    const response = await fetch(urlToUse);
+    const response = await fetch(sheetUrl);
     
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}: ${response.statusText}`);
@@ -81,7 +75,7 @@ export async function parseGoogleSheetsData(sheetUrl?: string): Promise<ParsedDa
     // Extract metadata
     let countryCode = 'US'; // Default to US
     let appStoreLink = '';
-    let maxComplaintsPerDay = 10; // Default value
+    let maxComplaintsPerDay: number | null = null;
     
     for (let i = 0; i < Math.min(10, jsonData.length); i++) {
       const row = jsonData[i];
@@ -92,11 +86,27 @@ export async function parseGoogleSheetsData(sheetUrl?: string): Promise<ParsedDa
           appStoreLink = row[1];
         } else if (row[0] === 'Max Complaints Per Day' && row[1]) {
           const value = Number(row[1]);
-          if (!isNaN(value) && Number.isInteger(value) && value >= 1 && value <= 50) {
+          if (!isNaN(value) && Number.isInteger(value) && value > 0 && value <= 50) {
             maxComplaintsPerDay = value;
           }
         }
       }
+    }
+    
+    // Validate that maxComplaintsPerDay was found
+    if (maxComplaintsPerDay === null) {
+      const structuredError: StructuredError = {
+        error: 'ValidationError',
+        message: 'Max Complaints Per Day field is required in the Google Sheet',
+        code: 'VALIDATION_FAILED',
+        details: [{
+          field: 'maxComplaintsPerDay',
+          message: 'Max Complaints Per Day field must be present in metadata rows 1-10',
+          value: null
+        }],
+        timestamp: new Date().toISOString()
+      };
+      throw structuredError;
     }
     
     // Convert country code to country name for internal use
@@ -145,8 +155,7 @@ export async function parseGoogleSheetsData(sheetUrl?: string): Promise<ParsedDa
           level3: row[2] || '',
           complaintText: row[3] || '',
           appStoreReview: (row[4] && row[4].toString().trim() !== '') ? row[4] : null,
-          appStoreRating: (row[5] && row[5].toString().trim() !== '') ? row[5] : null,
-          appName: 'Unknown' // Default value since we're not extracting app info
+          appStoreRating: (row[5] && row[5].toString().trim() !== '') ? Number(row[5]) : null
         };
         
         // Validate complaint values with row number

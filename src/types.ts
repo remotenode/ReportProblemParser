@@ -17,8 +17,7 @@ export interface ComplaintValues {
   level3: string;
   complaintText: string;
   appStoreReview: string | null;
-  appStoreRating: string | number | null;
-  appName: string;
+  appStoreRating: number | null;
 }
 
 export interface Complaint {

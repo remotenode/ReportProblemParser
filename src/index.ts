@@ -60,10 +60,24 @@ export default {
       const url = new URL(request.url);
       const sheetUrl = url.searchParams.get('url');
       
-      console.log('📡 Sheet URL:', sheetUrl || 'Using default URL');
+      if (!sheetUrl) {
+        const errorResponse: StructuredError = {
+          error: 'ValidationError',
+          message: 'URL parameter is required',
+          code: 'MISSING_URL_PARAMETER',
+          timestamp: new Date().toISOString()
+        };
+        
+        return new Response(JSON.stringify(errorResponse), {
+          status: 400,
+          headers: corsHeaders
+        });
+      }
+      
+      console.log('📡 Sheet URL:', sheetUrl);
       
       // Parse the Google Sheets data
-      const result = await parseGoogleSheetsData(sheetUrl || undefined);
+      const result = await parseGoogleSheetsData(sheetUrl);
       
       console.log('✅ Successfully parsed data, returning response');
       

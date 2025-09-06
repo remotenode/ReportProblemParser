@@ -55,10 +55,10 @@ function validateMaxComplaintsPerDay(value: any): ValidationError | null {
     };
   }
 
-  if (numValue < 1) {
+  if (numValue <= 0) {
     return {
       field: 'maxComplaintsPerDay',
-      message: 'Max complaints per day must be at least 1',
+      message: 'Max complaints per day must be greater than 0',
       value: value
     };
   }

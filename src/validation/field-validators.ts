@@ -59,7 +59,7 @@ export function validateStringLength(
 }
 
 /**
- * Validate App Store rating (1-5)
+ * Validate App Store rating (1-3)
  * @param rating - The rating value to validate
  * @returns ValidationError or null if valid
  */
@@ -77,10 +77,10 @@ export function validateRating(rating: any): ValidationError | null {
     };
   }
   
-  if (numRating < 1 || numRating > 5) {
+  if (numRating < 1 || numRating > 3) {
     return {
       field: 'appStoreRating',
-      message: 'App Store rating must be between 1 and 5',
+      message: 'App Store rating must be between 1 and 3',
       value: rating
     };
   }
