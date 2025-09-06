@@ -8,22 +8,24 @@ export function validateMetadata(metadata: any): ValidationError[] {
   // Validate country code
   const countryError = validateCountryCode(metadata.countryCode);
   if (countryError && typeof countryError === 'object') {
-    countryError.message = `${countryError.message} (Check metadata rows 1-10 in Google Sheet)`;
+    countryError.message = `${countryError.message} (Check cell B1 in Google Sheet)`;
     errors.push(countryError);
   }
 
   // Validate maxComplaintsPerDay
   const maxComplaintsError = validateMaxComplaintsPerDay(metadata.maxComplaintsPerDay);
   if (maxComplaintsError && typeof maxComplaintsError === 'object') {
-    maxComplaintsError.message = `${maxComplaintsError.message} (Check metadata rows 1-10 in Google Sheet)`;
+    maxComplaintsError.message = `${maxComplaintsError.message} (Check cell B3 in Google Sheet)`;
     errors.push(maxComplaintsError);
   }
 
   // Validate appStoreLink
-  const urlError = validateUrl(metadata.appStoreLink);
-  if (urlError && typeof urlError === 'object') {
-    urlError.message = `${urlError.message} (Check metadata rows 1-10 in Google Sheet)`;
-    errors.push(urlError);
+  if (!validateUrl(metadata.appStoreLink)) {
+    errors.push({
+      field: 'appStoreLink',
+      message: `Invalid URL format (Check cell B2 in Google Sheet)`,
+      value: metadata.appStoreLink
+    });
   }
 
   return errors;

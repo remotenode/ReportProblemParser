@@ -72,25 +72,64 @@ export async function parseGoogleSheetsData(sheetUrl: string): Promise<ParsedDat
       throw new Error('No data found in the spreadsheet');
     }
     
-    // Extract metadata
-    let countryCode = 'US'; // Default to US
+    // Extract metadata from specific cells
+    let countryCode: string | null = null;
     let appStoreLink = '';
     let maxComplaintsPerDay: number | null = null;
     
-    for (let i = 0; i < Math.min(10, jsonData.length); i++) {
-      const row = jsonData[i];
-      if (row && row.length >= 2) {
-        if (row[0] === 'Country' && row[1]) {
-          countryCode = row[1].toString().trim().toUpperCase();
-        } else if (row[0] === 'App Store Link' && row[1]) {
-          appStoreLink = row[1];
-        } else if (row[0] === 'Max Complaints Per Day' && row[1]) {
-          const value = Number(row[1]);
-          if (!isNaN(value) && Number.isInteger(value) && value > 0 && value <= 50) {
-            maxComplaintsPerDay = value;
-          }
-        }
+    // Extract countryCode from B1 (row 0, column 1)
+    if (jsonData.length > 0 && jsonData[0] && jsonData[0].length > 1) {
+      const value = jsonData[0][1];
+      if (value && value.toString().trim() !== '') {
+        countryCode = value.toString().trim().toUpperCase();
       }
+    }
+    
+    // Extract appStoreLink from B2 (row 1, column 1)
+    if (jsonData.length > 1 && jsonData[1] && jsonData[1].length > 1) {
+      const value = jsonData[1][1];
+      if (value && value.toString().trim() !== '') {
+        appStoreLink = value.toString().trim();
+      }
+    }
+    
+    // Extract maxComplaintsPerDay from B3 (row 2, column 1)
+    if (jsonData.length > 2 && jsonData[2] && jsonData[2].length > 1) {
+      const value = Number(jsonData[2][1]);
+      if (!isNaN(value) && Number.isInteger(value) && value > 0 && value <= 50) {
+        maxComplaintsPerDay = value;
+      }
+    }
+    
+    // Validate that countryCode was found and is 'US'
+    if (countryCode === null) {
+      const structuredError: StructuredError = {
+        error: 'ValidationError',
+        message: 'Country code field is required in the Google Sheet',
+        code: 'VALIDATION_FAILED',
+        details: [{
+          field: 'countryCode',
+          message: 'Country code field must be present in cell B1',
+          value: null
+        }],
+        timestamp: new Date().toISOString()
+      };
+      throw structuredError;
+    }
+    
+    if (countryCode !== 'US') {
+      const structuredError: StructuredError = {
+        error: 'ValidationError',
+        message: 'Only US country code is supported',
+        code: 'VALIDATION_FAILED',
+        details: [{
+          field: 'countryCode',
+          message: 'Country code must be "US" (only US is supported)',
+          value: countryCode
+        }],
+        timestamp: new Date().toISOString()
+      };
+      throw structuredError;
     }
     
     // Validate that maxComplaintsPerDay was found
@@ -101,7 +140,7 @@ export async function parseGoogleSheetsData(sheetUrl: string): Promise<ParsedDat
         code: 'VALIDATION_FAILED',
         details: [{
           field: 'maxComplaintsPerDay',
-          message: 'Max Complaints Per Day field must be present in metadata rows 1-10',
+          message: 'Max Complaints Per Day field must be present in cell B3',
           value: null
         }],
         timestamp: new Date().toISOString()
@@ -112,18 +151,17 @@ export async function parseGoogleSheetsData(sheetUrl: string): Promise<ParsedDat
     // Convert country code to country name for internal use
     const countryName = getCountryName(countryCode);
     
-    // Find the data header row
-    let dataStartRow = -1;
-    for (let i = 0; i < jsonData.length; i++) {
-      const row = jsonData[i];
-      if (row && row.length > 0 && row[0] === 'Level 1') {
-        dataStartRow = i + 1;
-        break;
-      }
+    // Data starts at row 8 (index 7)
+    const dataStartRow = 7;
+    
+    if (jsonData.length <= dataStartRow) {
+      throw new Error('Not enough rows in the spreadsheet (data should start at row 8)');
     }
     
-    if (dataStartRow === -1) {
-      throw new Error('Could not find data header row (missing "Level 1" header)');
+    // Verify that row 8 contains the expected header
+    const headerRow = jsonData[dataStartRow];
+    if (!headerRow || headerRow.length === 0 || headerRow[0] !== 'Report a scam or fraud') {
+      throw new Error('Data header row 8 does not contain expected content "Report a scam or fraud"');
     }
     
     console.log(`📊 Data starts at row ${dataStartRow}`);
@@ -133,7 +171,8 @@ export async function parseGoogleSheetsData(sheetUrl: string): Promise<ParsedDat
     const allValidationErrors: ValidationError[] = [];
     let complaintId = 1;
     
-    for (let i = dataStartRow; i < jsonData.length; i++) {
+    // Start processing from row 9 (index 8) since row 8 is the header
+    for (let i = dataStartRow + 1; i < jsonData.length; i++) {
       const row = jsonData[i];
       const sheetRowNumber = i + 1; // Google Sheets row numbers start from 1
       

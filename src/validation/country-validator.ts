@@ -36,18 +36,10 @@ export function validateCountryCode(countryCode: string): ValidationError | null
 
   const upperCaseCode = countryCode.toUpperCase().trim();
   
-  if (upperCaseCode.length !== 2) {
+  if (upperCaseCode !== 'US') {
     return {
       field: 'country',
-      message: 'Country code must be exactly 2 characters (ISO 3166-1 alpha-2)',
-      value: countryCode
-    };
-  }
-
-  if (!VALID_COUNTRY_CODES.includes(upperCaseCode)) {
-    return {
-      field: 'country',
-      message: `Invalid country code: ${countryCode}. Must be a valid ISO 3166-1 alpha-2 code`,
+      message: `Only US country code is supported. Received: ${countryCode}`,
       value: countryCode
     };
   }
