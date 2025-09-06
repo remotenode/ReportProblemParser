@@ -16,7 +16,7 @@ export function validateComplaintValues(
   const errors: ValidationError[] = [];
   
   // Validate required fields
-  const requiredFields = ['level1', 'level2', 'level3', 'complaintText'];
+  const requiredFields = ['iWouldLikeTo', 'tellUsMore', 'forWhatReason', 'describeTheIssue'];
   for (const field of requiredFields) {
     const error = validateRequired(values[field], field);
     if (error && typeof error === 'object') {
@@ -27,37 +27,37 @@ export function validateComplaintValues(
   }
   
   // Validate string lengths
-  if (values.level1) {
-    const error = validateStringLength(values.level1, 'level1', 1, 200);
+  if (values.iWouldLikeTo) {
+    const error = validateStringLength(values.iWouldLikeTo, 'iWouldLikeTo', 1, 200);
     if (error && typeof error === 'object') {
-      error.field = `complaint_${complaintId}.level1`;
+      error.field = `complaint_${complaintId}.iWouldLikeTo`;
       error.message = `${error.message} (Google Sheet Row ${sheetRowNumber})`;
       errors.push(error);
     }
   }
   
-  if (values.level2) {
-    const error = validateStringLength(values.level2, 'level2', 1, 200);
+  if (values.tellUsMore) {
+    const error = validateStringLength(values.tellUsMore, 'tellUsMore', 1, 200);
     if (error && typeof error === 'object') {
-      error.field = `complaint_${complaintId}.level2`;
+      error.field = `complaint_${complaintId}.tellUsMore`;
       error.message = `${error.message} (Google Sheet Row ${sheetRowNumber})`;
       errors.push(error);
     }
   }
   
-  if (values.level3) {
-    const error = validateStringLength(values.level3, 'level3', 1, 200);
+  if (values.forWhatReason) {
+    const error = validateStringLength(values.forWhatReason, 'forWhatReason', 1, 200);
     if (error && typeof error === 'object') {
-      error.field = `complaint_${complaintId}.level3`;
+      error.field = `complaint_${complaintId}.forWhatReason`;
       error.message = `${error.message} (Google Sheet Row ${sheetRowNumber})`;
       errors.push(error);
     }
   }
   
-  if (values.complaintText) {
-    const error = validateStringLength(values.complaintText, 'complaintText', 10, 2000);
+  if (values.describeTheIssue) {
+    const error = validateStringLength(values.describeTheIssue, 'describeTheIssue', 10, 2000);
     if (error && typeof error === 'object') {
-      error.field = `complaint_${complaintId}.complaintText`;
+      error.field = `complaint_${complaintId}.describeTheIssue`;
       error.message = `${error.message} (Google Sheet Row ${sheetRowNumber})`;
       errors.push(error);
     }

@@ -189,10 +189,10 @@ export async function parseGoogleSheetsData(sheetUrl: string): Promise<ParsedDat
         
         // Store the actual values for variable replacement
         const values: ComplaintValues = {
-          level1: row[0] || '',
-          level2: row[1] || '',
-          level3: row[2] || '',
-          complaintText: row[3] || '',
+          iWouldLikeTo: row[0] || '',
+          tellUsMore: row[1] || '',
+          forWhatReason: row[2] || '',
+          describeTheIssue: row[3] || '',
           appStoreReview: (row[4] && row[4].toString().trim() !== '') ? row[4] : null,
           appStoreRating: (row[5] && row[5].toString().trim() !== '') ? Number(row[5]) : null
         };

@@ -12,10 +12,10 @@ export interface ValueItem {
 }
 
 export interface ComplaintValues {
-  level1: string;
-  level2: string;
-  level3: string;
-  complaintText: string;
+  iWouldLikeTo: string;
+  tellUsMore: string;
+  forWhatReason: string;
+  describeTheIssue: string;
   appStoreReview: string | null;
   appStoreRating: number | null;
 }

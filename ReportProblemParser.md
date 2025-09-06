@@ -46,10 +46,10 @@ curl "https://report-problem-parser.artsyom-avanesov.workers.dev/?url=https://do
     {
       "id": 1,
       "steps": [
-        { "name": "level1", "value": "Report a scam or fraud" },
-        { "name": "level2", "value": "Report an issue with the an app" },
-        { "name": "level3", "value": "A virus alert or said my device was hacked." },
-        { "name": "complaintText", "value": "This app shows that I have virus and forced me to buy subscription. Completely scam app! Return my money!" },
+        { "name": "iWouldLikeTo", "value": "Report a scam or fraud" },
+        { "name": "tellUsMore", "value": "Report an issue with the an app" },
+        { "name": "forWhatReason", "value": "A virus alert or said my device was hacked." },
+        { "name": "describeTheIssue", "value": "This app shows that I have virus and forced me to buy subscription. Completely scam app! Return my money!" },
         { "name": "appStoreReview", "value": "Dangerous scam!!! The app lies about \"viruses\" and pushes forced payments. Do not trust this!" },
         { "name": "appStoreRating", "value": 1 },
       ]
@@ -337,16 +337,16 @@ Your Google Sheet must have the following structure:
    - **B2**: App Store Link
    - **B3**: Max Complaints Per Day (1-50)
 2. **Header row** (row 8): "Report a scam or fraud" (first complaint data)
-3. **Data rows** (row 9+): Actual complaint data with columns: Level 1, Level 2, Level 3, Text for Claim, App Store Review, App Store Rating
+3. **Data rows** (row 9+): Actual complaint data with columns: iWouldLikeTo, tellUsMore, forWhatReason, describeTheIssue, App Store Review, App Store Rating
 
 ### Required Columns
 
 | Column | Required | Description |
 |--------|----------|-------------|
-| Level 1 | Yes | First dropdown selection |
-| Level 2 | Yes | Second dropdown selection |
-| Level 3 | Yes | Third dropdown selection |
-| Text for Claim | Yes | Main complaint text (min 10 chars) |
+| iWouldLikeTo | Yes | First dropdown selection |
+| tellUsMore | Yes | Second dropdown selection |
+| forWhatReason | Yes | Third dropdown selection |
+| describeTheIssue | Yes | Main complaint text (min 10 chars) |
 | App Store Review | No | Review text (min 10 chars if present) |
 | App Store Rating | No | Rating 1-3 (if present) |
 
