@@ -8,9 +8,6 @@ export interface Metadata {
   storeRegion: string;
   lastUpdated: string;
   totalReports: number;
-  maxComplaintsPerDay: number;
-  dailyLimitValid: boolean;
-  dailyLimitMessage: string;
 }
 
 export interface ValueItem {
@@ -30,8 +27,7 @@ export interface ComplaintValues {
 
 export interface Complaint {
   id: number;
-  instructions: string[];
-  values: ValueItem[];
+  steps: ValueItem[];
 }
 
 export interface ParsedData {

@@ -41,35 +41,16 @@ curl https://report-problem-parser.artsyom-avanesov.workers.dev/
 ```json
 {
   "metadata": {
-    "country": "United States",
+    "countryCode": "US",
+    "maxComplaintsPerDay": 5,
     "appStoreLink": "https://apps.apple.com/us/app/guardix-ai-virus-protection/id6749379870",
-    "appName": "Guardix AI Virus Protection",
-    "appId": "6749379870",
-    "storeRegion": "us",
     "lastUpdated": "2025-09-05T12:59:13.486Z",
     "totalReports": 51
   },
   "complaints": [
     {
       "id": 1,
-      "instructions": [
-        "Download the app '{appName}' from App Store",
-        "Open the app and use it for 10 minutes to experience the issues",
-        "After 10 minutes, go to App Store and find '{appName}'",
-        "Navigate to the app page and scroll down",
-        "Find and click 'Report a Problem' button",
-        "Select {level1} from dropdown and click Continue",
-        "Select {level2} from dropdown",
-        "Select {level3} from dropdown",
-        "Write your complaint text: {complaintText}",
-        "Submit the report",
-        "Go back to the app page and scroll to 'Reviews' section",
-        "Click 'Write a Review' button",
-        "Write App Store review: {appStoreReview}",
-        "Set App Store rating to {appStoreRating}",
-        "Submit the review"
-      ],
-      "values": [
+      "steps": [
         { "name": "level1", "value": "Report a scam or fraud" },
         { "name": "level2", "value": "Report an issue with the an app" },
         { "name": "level3", "value": "A virus alert or said my device was hacked." },
@@ -96,28 +77,24 @@ curl https://report-problem-parser.artsyom-avanesov.workers.dev/
 | `storeRegion` | string | App Store region (us, uk, etc.) |
 | `lastUpdated` | string | ISO timestamp of when data was parsed |
 | `totalReports` | number | Total number of valid complaints found |
-| `maxComplaintsPerDay` | number | Maximum complaints allowed per day (5-50) |
-| `dailyLimitValid` | boolean | Whether the complaint count is within daily limits |
-| `dailyLimitMessage` | string | Human-readable message about daily limit validation |
 
 ##### Complaint Object
 
 | Field | Type | Description |
 |-------|------|-------------|
 | `id` | number | Unique complaint identifier |
-| `instructions` | string[] | Array of step-by-step instructions with placeholders |
-| `values` | object | Object containing actual values for placeholder replacement |
+| `steps` | ValueItem[] | Array of step data with name and value properties |
 
-##### Values Array
+##### Steps Array
 
-The `values` field is an array of objects with `name` and `value` properties:
+The `steps` field is an array of objects with `name` and `value` properties:
 
 | Field | Type | Description |
 |-------|------|-------------|
 | `name` | string | Variable name for placeholder replacement |
 | `value` | string \| number \| null | Actual value for the variable |
 
-**Example Values Array:**
+**Example Steps Array:**
 ```json
 [
   { "name": "level1", "value": "Report a scam or fraud" },
@@ -358,34 +335,6 @@ No rate limits are currently enforced, but please use responsibly.
 
 The API supports CORS and can be called from web browsers.
 
-## Daily Limits
-
-The API enforces daily complaint limits to ensure responsible usage:
-
-- **Minimum**: 5 complaints per day
-- **Maximum**: 50 complaints per day
-- **Validation**: Applied to total number of valid complaints in the sheet
-- **Error**: Returns 422 status with detailed validation message if limits are exceeded
-
-### Daily Limit Validation
-
-The API will reject sheets that don't meet the daily limits:
-
-```json
-{
-  "error": "ValidationError",
-  "message": "Data validation failed with 1 errors",
-  "code": "VALIDATION_FAILED",
-  "details": [
-    {
-      "field": "totalReports",
-      "message": "Sheet contains 51 complaints, but maximum 50 complaints per day are allowed",
-      "value": 51
-    }
-  ],
-  "timestamp": "2025-09-05T13:38:29.200Z"
-}
-```
 
 ## Google Sheets Requirements
 
