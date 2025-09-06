@@ -87,13 +87,12 @@ The `steps` field is an array of objects with `name` and `value` properties:
 **Example Steps Array:**
 ```json
 [
-  { "name": "level1", "value": "Report a scam or fraud" },
-  { "name": "level2", "value": "Report an issue with the an app" },
-  { "name": "level3", "value": "A virus alert or said my device was hacked." },
-  { "name": "complaintText", "value": "This app shows that I have virus..." },
+  { "name": "iWouldLikeTo", "value": "Report a scam or fraud" },
+  { "name": "tellUsMore", "value": "Report an issue with the an app" },
+  { "name": "forWhatReason", "value": "A virus alert or said my device was hacked." },
+  { "name": "describeTheIssue", "value": "This app shows that I have virus..." },
   { "name": "appStoreReview", "value": "Dangerous scam!!!" },
-  { "name": "appStoreRating", "value": 1 },
-  { "name": "appName", "value": "Guardix AI Virus Protection" }
+  { "name": "appStoreRating", "value": 1 }
 ]
 ```
 
@@ -143,13 +142,13 @@ Returned for data validation errors.
   "code": "VALIDATION_FAILED",
   "details": [
     {
-      "field": "complaint_1.level1",
-      "message": "level1 is required and cannot be empty (Google Sheet Row 15)",
+      "field": "complaint_1.iWouldLikeTo",
+      "message": "iWouldLikeTo is required and cannot be empty (Google Sheet Row 15)",
       "value": ""
     },
     {
-      "field": "complaint_2.complaintText",
-      "message": "complaintText must be at least 10 characters long (Google Sheet Row 23)",
+      "field": "complaint_2.describeTheIssue",
+      "message": "describeTheIssue must be at least 10 characters long (Google Sheet Row 23)",
       "value": "Short"
     },
     {
@@ -311,7 +310,7 @@ function replaceVariables(instruction, valuesArray) {
 const instruction = "Download the app '{appName}' from App Store";
 const valuesArray = [
   { "name": "appName", "value": "Guardix AI Virus Protection" },
-  { "name": "level1", "value": "Report a scam or fraud" }
+  { "name": "iWouldLikeTo", "value": "Report a scam or fraud" }
 ];
 const finalInstruction = replaceVariables(instruction, valuesArray);
 // Result: "Download the app 'Guardix AI Virus Protection' from App Store"

@@ -7,12 +7,11 @@ import { ComplaintValues, ValueItem } from '../types';
  */
 export function convertValuesToArray(values: ComplaintValues): ValueItem[] {
   return [
-    { name: 'level1', value: values.level1 },
-    { name: 'level2', value: values.level2 },
-    { name: 'level3', value: values.level3 },
-    { name: 'complaintText', value: values.complaintText },
+    { name: 'iWouldLikeTo', value: values.iWouldLikeTo },
+    { name: 'tellUsMore', value: values.tellUsMore },
+    { name: 'forWhatReason', value: values.forWhatReason },
+    { name: 'describeTheIssue', value: values.describeTheIssue },
     { name: 'appStoreReview', value: values.appStoreReview },
-    { name: 'appStoreRating', value: values.appStoreRating },
-    { name: 'appName', value: values.appName }
+    { name: 'appStoreRating', value: values.appStoreRating }
   ];
 }

@@ -26,18 +26,18 @@ A Cloudflare Worker that parses Google Sheets data and returns structured compla
     {
       "id": 1,
       "instructions": [
-        "Select {level1} from dropdown and click Continue",
-        "Select {level2} from dropdown",
-        "Select {level3} from dropdown",
-        "Write your complaint text: {complaintText}",
+        "Select {iWouldLikeTo} from dropdown and click Continue",
+        "Select {tellUsMore} from dropdown",
+        "Select {forWhatReason} from dropdown",
+        "Write your complaint text: {describeTheIssue}",
         "Write App Store review: {appStoreReview}",
         "Set App Store rating to {appStoreRating}"
       ],
       "values": {
-        "level1": "Report a scam or fraud",
-        "level2": "Report an issue with the an app",
-        "level3": "A virus alert or said my device was hacked.",
-        "complaintText": "This app shows that I have virus...",
+        "iWouldLikeTo": "Report a scam or fraud",
+        "tellUsMore": "Report an issue with the an app",
+        "forWhatReason": "A virus alert or said my device was hacked.",
+        "describeTheIssue": "This app shows that I have virus...",
         "appStoreReview": "Dangerous scam!!!...",
         "appStoreRating": 1
       }
@@ -125,9 +125,9 @@ Each complaint includes:
 You can replace the placeholders in instructions using the values object:
 
 ```javascript
-const instruction = "Select {level1} from dropdown and click Continue";
-const values = { level1: "Report a scam or fraud" };
-const finalInstruction = instruction.replace(/{level1}/g, values.level1);
+const instruction = "Select {iWouldLikeTo} from dropdown and click Continue";
+const values = { iWouldLikeTo: "Report a scam or fraud" };
+const finalInstruction = instruction.replace(/{iWouldLikeTo}/g, values.iWouldLikeTo);
 // Result: "Select Report a scam or fraud from dropdown and click Continue"
 ```
 
