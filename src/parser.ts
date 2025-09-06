@@ -5,6 +5,7 @@ import { validateUrl } from './utils/url-utils';
 import { validateComplaintValues } from './validation/complaint-validator';
 import { validateMetadata } from './validation/metadata-validator';
 import { validateDailyLimits } from './validation/daily-limit-validator';
+import { getCountryName } from './validation/country-validator';
 import { buildInstructions } from './utils/instruction-builder';
 import { convertValuesToArray } from './utils/values-converter';
 
@@ -81,7 +82,7 @@ export async function parseGoogleSheetsData(sheetUrl?: string): Promise<ParsedDa
     }
     
     // Extract metadata
-    let country = 'Unknown';
+    let countryCode = 'US'; // Default to US
     let appStoreLink = '';
     let appName = 'Unknown';
     
@@ -89,7 +90,7 @@ export async function parseGoogleSheetsData(sheetUrl?: string): Promise<ParsedDa
       const row = jsonData[i];
       if (row && row.length >= 2) {
         if (row[0] === 'Country' && row[1]) {
-          country = row[1];
+          countryCode = row[1].toString().trim().toUpperCase();
         } else if (row[0] === 'App Store Link' && row[1]) {
           appStoreLink = row[1];
         } else if (row[0] === 'App Name' && row[1]) {
@@ -97,6 +98,9 @@ export async function parseGoogleSheetsData(sheetUrl?: string): Promise<ParsedDa
         }
       }
     }
+    
+    // Convert country code to country name
+    const countryName = getCountryName(countryCode);
     
     // Extract app information from App Store URL
     const appInfo = extractAppInfo(appStoreLink);
@@ -178,7 +182,7 @@ export async function parseGoogleSheetsData(sheetUrl?: string): Promise<ParsedDa
     
     // Validate metadata
     const metadata: Metadata = {
-      country: country,
+      country: countryCode,
       appStoreLink: appStoreLink,
       appName: finalAppName,
       appId: appInfo.appId,

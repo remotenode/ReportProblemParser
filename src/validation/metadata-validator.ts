@@ -1,6 +1,7 @@
 import { ValidationError, Metadata } from '../types';
 import { validateRequired, validateStringLength } from './field-validators';
 import { validateUrl } from '../utils/url-utils';
+import { validateCountryCode } from './country-validator';
 
 /**
  * Validate metadata object
@@ -10,19 +11,11 @@ import { validateUrl } from '../utils/url-utils';
 export function validateMetadata(metadata: any): ValidationError[] {
   const errors: ValidationError[] = [];
   
-  // Validate country
-  const countryError = validateRequired(metadata.country, 'country');
+  // Validate country code
+  const countryError = validateCountryCode(metadata.country);
   if (countryError) {
     countryError.message = `${countryError.message} (Check metadata rows 1-10 in Google Sheet)`;
     errors.push(countryError);
-  }
-  
-  if (metadata.country && metadata.country !== 'Unknown') {
-    const countryLengthError = validateStringLength(metadata.country, 'country', 2, 100);
-    if (countryLengthError) {
-      countryLengthError.message = `${countryLengthError.message} (Check metadata rows 1-10 in Google Sheet)`;
-      errors.push(countryLengthError);
-    }
   }
   
   // Validate app store link
