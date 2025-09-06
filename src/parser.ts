@@ -6,6 +6,7 @@ import { validateComplaintValues } from './validation/complaint-validator';
 import { validateMetadata } from './validation/metadata-validator';
 import { validateDailyLimits } from './validation/daily-limit-validator';
 import { buildInstructions } from './utils/instruction-builder';
+import { convertValuesToArray } from './utils/values-converter';
 
 // Default Google Sheets Excel URL (fallback)
 const DEFAULT_XLSX_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT3cbMFli_QctPsAmtorrUvpyF5Ff900cDiEjIETFnojL7hmhFjHwgunfWjmzynZAbBNNT-ZJZn-jYr/pub?output=xlsx';
@@ -157,10 +158,13 @@ export async function parseGoogleSheetsData(sheetUrl?: string): Promise<ParsedDa
           // Build enhanced instructions using the modular function
           const instructions = buildInstructions(values);
           
+          // Convert values object to array format
+          const valuesArray = convertValuesToArray(values);
+          
           const complaint: Complaint = {
             id: complaintId++,
             instructions: instructions,
-            values: values
+            values: valuesArray
           };
           
           complaints.push(complaint);

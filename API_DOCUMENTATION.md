@@ -69,15 +69,15 @@ curl https://report-problem-parser.artsyom-avanesov.workers.dev/
         "Set App Store rating to {appStoreRating}",
         "Submit the review"
       ],
-      "values": {
-        "level1": "Report a scam or fraud",
-        "level2": "Report an issue with the an app",
-        "level3": "A virus alert or said my device was hacked.",
-        "complaintText": "This app shows that I have virus and forced me to buy subscription. Completely scam app! Return my money!",
-        "appStoreReview": "Dangerous scam!!! The app lies about \"viruses\" and pushes forced payments. Do not trust this!",
-        "appStoreRating": 1,
-        "appName": "Guardix AI Virus Protection"
-      }
+      "values": [
+        { "name": "level1", "value": "Report a scam or fraud" },
+        { "name": "level2", "value": "Report an issue with the an app" },
+        { "name": "level3", "value": "A virus alert or said my device was hacked." },
+        { "name": "complaintText", "value": "This app shows that I have virus and forced me to buy subscription. Completely scam app! Return my money!" },
+        { "name": "appStoreReview", "value": "Dangerous scam!!! The app lies about \"viruses\" and pushes forced payments. Do not trust this!" },
+        { "name": "appStoreRating", "value": 1 },
+        { "name": "appName", "value": "Guardix AI Virus Protection" }
+      ]
     }
   ]
 }
@@ -108,17 +108,27 @@ curl https://report-problem-parser.artsyom-avanesov.workers.dev/
 | `instructions` | string[] | Array of step-by-step instructions with placeholders |
 | `values` | object | Object containing actual values for placeholder replacement |
 
-##### Values Object
+##### Values Array
+
+The `values` field is an array of objects with `name` and `value` properties:
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `level1` | string | First dropdown selection (required) |
-| `level2` | string | Second dropdown selection (required) |
-| `level3` | string | Third dropdown selection (required) |
-| `complaintText` | string | Main complaint text (required) |
-| `appStoreReview` | string \| null | App Store review text (optional) |
-| `appStoreRating` | number \| null | App Store rating 1-5 (optional) |
-| `appName` | string | App name for variable replacement |
+| `name` | string | Variable name for placeholder replacement |
+| `value` | string \| number \| null | Actual value for the variable |
+
+**Example Values Array:**
+```json
+[
+  { "name": "level1", "value": "Report a scam or fraud" },
+  { "name": "level2", "value": "Report an issue with the an app" },
+  { "name": "level3", "value": "A virus alert or said my device was hacked." },
+  { "name": "complaintText", "value": "This app shows that I have virus..." },
+  { "name": "appStoreReview", "value": "Dangerous scam!!!" },
+  { "name": "appStoreRating", "value": 1 },
+  { "name": "appName", "value": "Guardix AI Virus Protection" }
+]
+```
 
 ## Error Responses
 
@@ -320,19 +330,23 @@ try {
 
 ## Variable Replacement
 
-Instructions contain placeholders in the format `{variableName}`. Replace these with actual values from the `values` object:
+Instructions contain placeholders in the format `{variableName}`. Replace these with actual values from the `values` array:
 
 ```javascript
-function replaceVariables(instruction, values) {
+function replaceVariables(instruction, valuesArray) {
   return instruction.replace(/\{(\w+)\}/g, (match, variableName) => {
-    return values[variableName] || match;
+    const valueItem = valuesArray.find(item => item.name === variableName);
+    return valueItem ? valueItem.value : match;
   });
 }
 
 // Example
 const instruction = "Download the app '{appName}' from App Store";
-const values = { appName: "Guardix AI Virus Protection" };
-const finalInstruction = replaceVariables(instruction, values);
+const valuesArray = [
+  { "name": "appName", "value": "Guardix AI Virus Protection" },
+  { "name": "level1", "value": "Report a scam or fraud" }
+];
+const finalInstruction = replaceVariables(instruction, valuesArray);
 // Result: "Download the app 'Guardix AI Virus Protection' from App Store"
 ```
 

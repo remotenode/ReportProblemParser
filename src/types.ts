@@ -13,6 +13,11 @@ export interface Metadata {
   dailyLimitMessage: string;
 }
 
+export interface ValueItem {
+  name: string;
+  value: string | number | null;
+}
+
 export interface ComplaintValues {
   level1: string;
   level2: string;
@@ -26,7 +31,7 @@ export interface ComplaintValues {
 export interface Complaint {
   id: number;
   instructions: string[];
-  values: ComplaintValues;
+  values: ValueItem[];
 }
 
 export interface ParsedData {
