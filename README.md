@@ -18,7 +18,6 @@ A Cloudflare Worker that parses Google Sheets data and returns structured compla
   "metadata": {
     "country": "United States",
     "appStoreLink": "https://apps.apple.com/us/app/...",
-    "appName": "App Name",
     "lastUpdated": "2025-09-05T11:24:53.655Z",
     "totalReports": 51
   },

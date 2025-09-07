@@ -307,13 +307,13 @@ function replaceVariables(instruction, valuesArray) {
 }
 
 // Example
-const instruction = "Download the app '{appName}' from App Store";
+const instruction = "Select '{iWouldLikeTo}' from dropdown and click Continue";
 const valuesArray = [
-  { "name": "appName", "value": "Guardix AI Virus Protection" },
-  { "name": "iWouldLikeTo", "value": "Report a scam or fraud" }
+  { "name": "iWouldLikeTo", "value": "Report a scam or fraud" },
+  { "name": "tellUsMore", "value": "Report an issue with the app" }
 ];
 const finalInstruction = replaceVariables(instruction, valuesArray);
-// Result: "Download the app 'Guardix AI Virus Protection' from App Store"
+// Result: "Select 'Report a scam or fraud' from dropdown and click Continue"
 ```
 
 ## Rate Limits
