@@ -21,7 +21,6 @@ export interface ComplaintValues {
 }
 
 export interface Complaint {
-  id: number;
   steps: ValueItem[];
 }
 

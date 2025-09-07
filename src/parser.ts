@@ -169,7 +169,6 @@ export async function parseGoogleSheetsData(sheetUrl: string): Promise<ParsedDat
     // Process complaints with validation
     const complaints: Complaint[] = [];
     const allValidationErrors: ValidationError[] = [];
-    let complaintId = 1;
     
     // Start processing from row 9 (index 8) since row 8 is the header
     for (let i = dataStartRow + 1; i < jsonData.length; i++) {
@@ -198,7 +197,7 @@ export async function parseGoogleSheetsData(sheetUrl: string): Promise<ParsedDat
         };
         
         // Validate complaint values with row number
-        const validationErrors = validateComplaintValues(values, complaintId, sheetRowNumber);
+        const validationErrors = validateComplaintValues(values, sheetRowNumber);
         allValidationErrors.push(...validationErrors);
         
         // Only add complaint if validation passes
@@ -207,7 +206,6 @@ export async function parseGoogleSheetsData(sheetUrl: string): Promise<ParsedDat
           const stepsArray = convertValuesToArray(values);
           
           const complaint: Complaint = {
-            id: complaintId++,
             steps: stepsArray
           };
           

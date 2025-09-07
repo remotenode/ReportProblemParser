@@ -44,7 +44,6 @@ curl "https://report-problem-parser.artsyom-avanesov.workers.dev/?url=https://do
   },
   "complaints": [
     {
-      "id": 1,
       "steps": [
         { "name": "iWouldLikeTo", "value": "Report a scam or fraud" },
         { "name": "tellUsMore", "value": "Report an issue with the an app" },

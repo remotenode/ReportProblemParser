@@ -23,7 +23,6 @@ A Cloudflare Worker that parses Google Sheets data and returns structured compla
   },
   "complaints": [
     {
-      "id": 1,
       "instructions": [
         "Select {iWouldLikeTo} from dropdown and click Continue",
         "Select {tellUsMore} from dropdown",
