@@ -7,8 +7,10 @@ The Report Problem Parser API is a Cloudflare Worker that parses Google Sheets d
 ## Base URL
 
 ```
-https://report-problem-parser.artsyom-avanesov.workers.dev
+https://complaints.aso.market
 ```
+
+**Alternative URL**: https://report-problem-parser.artsyom-avanesov.workers.dev
 
 ## Authentication
 

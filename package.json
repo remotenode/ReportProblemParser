@@ -9,13 +9,18 @@
     "deploy:staging": "wrangler deploy --env staging",
     "deploy:production": "wrangler deploy --env production"
   },
-  "keywords": ["cloudflare", "worker", "google-sheets", "parser"],
+  "keywords": [
+    "cloudflare",
+    "worker",
+    "google-sheets",
+    "parser"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240905.0",
     "typescript": "^5.0.0",
-    "wrangler": "^3.0.0"
+    "wrangler": "^4.34.0"
   },
   "dependencies": {
     "xlsx": "^0.18.5"

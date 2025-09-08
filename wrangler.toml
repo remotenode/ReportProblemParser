@@ -4,6 +4,9 @@ compatibility_date = "2024-09-05"
 
 [env.production]
 name = "report-problem-parser"
+routes = [
+  { pattern = "complaints.aso.market/*", zone_name = "aso.market" }
+]
 
 [env.staging]
 name = "report-problem-parser-staging"
